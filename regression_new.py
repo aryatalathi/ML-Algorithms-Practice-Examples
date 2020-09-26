@@ -25,8 +25,11 @@ df = pd.read_csv('C:/Users/aryat/Downloads/weight-height.csv')
 
 # print the first 5 rows of the data set
 df.head()
+#print the size
 df.shape
+#print the datatypes
 df.dtypes
+#print the column wise data
 df.info()
 #plotting histogram
 plt.style.use('ggplot')
@@ -112,12 +115,12 @@ ax1 = df_males.plot(kind='scatter', x='Height', y='Weight', color='blue', alpha=
 df_females.plot(kind='scatter', x='Height', y='Weight', color='magenta', alpha=0.5, figsize=(10, 7), ax=ax1)
 
 # regression lines
-plt.plot(df_males.Height, male_fit[0] * df_males.Height + male_fit[1], color='darkblue', linewidth=2)
-plt.plot(df_females.Height, female_fit[0] * df_females.Height + female_fit[1], color='deeppink', linewidth=2)
+plt.plot(df_males.Height, male_fit[0] * df_males.Height + male_fit[1], color='blue', linewidth=2)
+plt.plot(df_females.Height, female_fit[0] * df_females.Height + female_fit[1], color='red', linewidth=2)
 
 # regression equations
-plt.text(65, 230, 'y={:.2f}+{:.2f}*x'.format(male_fit[1], male_fit[0]), color='darkblue', size=12)
-plt.text(70, 130, 'y={:.2f}+{:.2f}*x'.format(female_fit[1], female_fit[0]), color='deeppink', size=12)
+plt.text(65, 230, 'y={:.2f}+{:.2f}*x'.format(male_fit[1], male_fit[0]), color='blue', size=12)
+plt.text(70, 130, 'y={:.2f}+{:.2f}*x'.format(female_fit[1], female_fit[0]), color='red', size=12)
 
 # legend, title and labels.
 plt.legend(labels=['Males Regresion Line', 'Females Regresion Line', 'Males', 'Females'])
@@ -129,7 +132,7 @@ plt.ylabel('Weight (pounds)', size=18)
 # regression plot using seaborn
 fig = plt.figure(figsize=(10, 7))
 sns.regplot(x=df_males.Height, y=df_males.Weight, color='blue', marker='+')
-sns.regplot(x=df_females.Height, y=df_females.Weight, color='magenta', marker='+')
+sns.regplot(x=df_females.Height, y=df_females.Weight, color='red', marker='+')
 
 # Legend, title and labels.
 plt.legend(labels=['Males', 'Females'])
@@ -211,3 +214,7 @@ pearson_coef, p_value = stats.pearsonr(df_males.Height, df_males.Weight)
 
 print(pearson_coef)
 
+#pearson coefficients calculation : covariance / product of std deviations
+#It is used to measure the strength and direction of the linear relationship between two variables
+#It lies between +1 and -1, 
+#where 1 is a perfect positive linear correlation, 0 is no linear correlation, and −1 is a perfect negative linear correlation.
